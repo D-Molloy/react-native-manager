@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import { Card, CardSection, Input, Button } from "./common";
-import { CardSection } from "./common/CardSection";
-import { Card } from "./common/Card";
-import { Input } from "./common/Input";
-import { Button } from "./common/Button";
+import { Card, CardSection, Input, Button } from "./common";
+
 class LoginForm extends Component {
+  state = {
+    email: "",
+    password: ""
+  };
+
+  onEmailChange = text => {};
+
   render() {
     return (
       <Card>
@@ -13,7 +17,8 @@ class LoginForm extends Component {
           <Input
             label="Email"
             placeholder="email@email.com"
-            onChange={() => null}
+            value={this.state.email}
+            onChangeText={this.onEmailChange}
           />
         </CardSection>
         <CardSection>
@@ -21,7 +26,7 @@ class LoginForm extends Component {
             secureTextEntry
             label="Password"
             placeholder="password"
-            onChange={() => null}
+            value={this.state.password}
           />
         </CardSection>
         <CardSection>
