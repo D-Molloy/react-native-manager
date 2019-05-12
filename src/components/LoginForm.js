@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Card, CardSection, Input, Button } from "./common";
-
+import { Card, CardSection, Input, Button, Spinner } from "./common";
+import { View, Text } from "react-native";
 import { connect } from "react-redux";
 import { emailChanged, passwordChanged, loginUser } from "../actions";
+import { whileStatement } from "@babel/types";
 
 class LoginForm extends Component {
   onEmailChange = text => {
@@ -38,17 +39,50 @@ class LoginForm extends Component {
             onChangeText={this.onPasswordChange}
           />
         </CardSection>
-        <CardSection>
-          <Button onPress={this.onButtonPress}>Login</Button>
-        </CardSection>
+
+        {this.props.error ? (
+          <CardSection>
+            <View style={styles.errorViewStyle}>
+              <Text style={styles.errorTextStyle}>{this.props.error}</Text>
+            </View>
+          </CardSection>
+        ) : null}
+
+        {this.props.loading === true ? (
+          <CardSection>
+            <Spinner />
+          </CardSection>
+        ) : (
+          <CardSection>
+            <Button onPress={this.onButtonPress}>Login</Button>
+          </CardSection>
+        )}
       </Card>
     );
   }
 }
 
+const styles = {
+  errorViewStyle: {
+    border: "1px solid black",
+    backgroundColor: "white",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  errorTextStyle: {
+    padding: 5,
+    height: 35,
+    fontSize: 20,
+    color: "red"
+  }
+};
+
 const mapStateToProps = state => ({
   email: state.auth.email,
-  password: state.auth.password
+  password: state.auth.password,
+  error: state.auth.error,
+  loading: state.auth.loading
 });
 
 export default connect(
