@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+// applyMiddleware - used to apply the redux-thunk middleware
+import { createStore, applyMiddleware } from "redux";
+// need to install thunk here to be able to use inside action creators
+import ReduxThunk from "redux-thunk";
 import reducers from "./reducers";
 import firebase from "firebase";
 
@@ -22,8 +24,10 @@ class App extends Component {
     firebase.initializeApp(firebaseConfig);
   }
   render() {
+    // second parameter is for any initial state
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
-      <Provider store={createStore(reducers)}>
+      <Provider store={store}>
         <LoginForm />
       </Provider>
     );
