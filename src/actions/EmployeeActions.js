@@ -17,7 +17,7 @@ export const employeeCreate = ({ name, phone, shift }) => {
   // get the current logged in user's id
   const { currentUser } = firebase.auth();
 
-  console.log(currentUser);
+  // console.log(currentUser);
   // /users/userId/employees - referencing the structure of our data model
   // TO AVOID GETTING AN ERROR - redux thunk needs to return something, so we're tricking if by having it return our login function
   return dispatch => {

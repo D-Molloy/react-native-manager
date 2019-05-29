@@ -5,7 +5,7 @@ const INITIAL_STATE = {};
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case EMPLOYEES_FETCH_SUCCESS:
-      console.log("success fetch ", action);
+      // console.log("success fetch ", action);
       // return {...state, [id]:action.payload}
       return action.payload;
 
