@@ -6,7 +6,7 @@ import { Actions } from "react-native-router-flux";
 class ListItem extends Component {
   onRowPress = () => {
     // pass any object you want to pass onto the Actions component
-    Actions.employeeCreate({ employee: this.props.employee });
+    Actions.employeeEdit({ employee: this.props.employee });
   };
 
   render() {

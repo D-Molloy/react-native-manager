@@ -6,6 +6,7 @@ import { CardSection, Input } from "./common";
 
 class EmployeeForm extends Component {
   render() {
+    console.log("Emp Form", this.props.employee);
     return (
       <View>
         <CardSection>
@@ -61,11 +62,11 @@ const styles = {
   }
 };
 
-const mapStateToProps = state => {
-  const { name, phone, shift } = state.employeeForm;
-
-  return { name, phone, shift };
-};
+const mapStateToProps = state => ({
+  name: state.employeeForm.name,
+  phone: state.employeeForm.phone,
+  shift: state.employeeForm.shift
+});
 
 export default connect(
   mapStateToProps,

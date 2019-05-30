@@ -14,7 +14,7 @@ class EmployeeCreate extends Component {
   render() {
     return (
       <Card>
-        <EmployeeForm {...this.props} />
+        <EmployeeForm />
         <CardSection>
           <Button onPress={this.onButtonPress.bind(this)}>Create</Button>
         </CardSection>
@@ -23,11 +23,11 @@ class EmployeeCreate extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  const { name, phone, shift } = state.employeeForm;
-
-  return { name, phone, shift };
-};
+const mapStateToProps = state => ({
+  name: state.employeeForm.name,
+  phone: state.employeeForm.phone,
+  shift: state.employeeForm.shift
+});
 
 export default connect(
   mapStateToProps,
